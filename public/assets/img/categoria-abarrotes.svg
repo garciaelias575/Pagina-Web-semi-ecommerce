@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Producto de categoría abarrotes">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7a4b17"/><stop offset="1" stop-color="#d89532"/></linearGradient></defs>
+<rect width="800" height="520" rx="36" fill="url(#g)"/><circle cx="400" cy="230" r="120" fill="white" opacity=".14"/>
+<text x="400" y="280" text-anchor="middle" font-size="150" font-family="Arial" font-weight="700" fill="white">A</text>
+<text x="400" y="410" text-anchor="middle" font-size="44" font-family="Arial" fill="white">Abarrotes</text></svg>

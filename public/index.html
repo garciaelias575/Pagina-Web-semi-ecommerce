@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prototipo académico H&O Pedidos Mayoristas: catálogo y solicitud de pedidos para pequeños comercios.">
+  <title>H&O Pedidos Mayoristas | Abastecemos tu negocio</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <a class="enlace-salto" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="cabecera-sitio sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand contenedor-marca" href="#inicio" aria-label="H&O, ir al inicio">
+          <img class="logo-marca" src="assets/img/logo-ho.png" alt="Logo de Distribuidora y Comercializadora H&O">
+          <span class="texto-marca">Pedidos <small>Mayoristas</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal" aria-controls="navPrincipal" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navPrincipal">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#como-funciona">¿Cómo funciona?</a></li>
+            <li class="nav-item"><a class="nav-link" href="#seguimiento">Seguimiento</a></li>
+            <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+          <a class="btn btn-acento ms-lg-3 mt-3 mt-lg-0" href="#pedido">Hacer pedido <span class="contador-pedido" id="contadorPedido">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="portada" id="inicio" aria-labelledby="hero-title">
+      <div class="portada-imagen" aria-hidden="true" style="background-image: url('assets/img/empresa-02.jpg');"></div>
+      <div class="portada-capa"></div>
+      <div class="container portada-contenido">
+        <div class="portada-texto">
+          <span class="antetitulo">Distribuidora y Comercializadora H&O</span>
+          <h1 id="hero-title">Abastecemos tu negocio</h1>
+          <p>Explora productos de consumo masivo, prepara tu solicitud mayorista y consulta su estado desde un solo lugar.</p>
+          <div class="portada-acciones">
+            <a class="btn btn-acento btn-lg" href="#catalogo">Ver catálogo</a>
+            <a class="btn btn-outline-light btn-lg" href="#pedido">Hacer pedido</a>
+          </div>
+          <ul class="portada-puntos" aria-label="Características del servicio">
+            <li>Atención mayorista</li><li>Variedad de productos</li><li>Solicitud organizada</li><li>Seguimiento básico</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-categorias" aria-labelledby="categorias-title">
+      <div class="container">
+        <div class="encabezado-seccion centrado">
+          <span class="antetitulo oscuro">Compra por categoría</span>
+          <h2 id="categorias-title">Encuentra lo que tu comercio necesita</h2>
+          <p>Selecciona una categoría para filtrar el catálogo sin recargar la página.</p>
+        </div>
+        <div class="cuadricula-categorias" id="categorias" aria-label="Filtros por categoría">
+          <button class="tarjeta-categoria activa" type="button"><span class="icono-categoria">∞</span><span>Todas</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">B</span><span>Bebidas</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">A</span><span>Abarrotes</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">H</span><span>Higiene</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">L</span><span>Limpieza</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">S</span><span>Snacks</span></button>
+          <button class="tarjeta-categoria" type="button"><span class="icono-categoria">O</span><span>Otros</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-catalogo" id="catalogo" aria-labelledby="catalogo-title">
+      <div class="container">
+        <div class="barra-herramientas-catalogo">
+          <div>
+            <span class="antetitulo oscuro">Catálogo B2B</span>
+            <h2 id="catalogo-title">Productos disponibles</h2>
+            <p id="resultadoCatalogo" class="texto-suave" aria-live="polite">Mostrando productos destacados</p>
+          </div>
+          <div class="contenedor-busqueda">
+            <label for="buscarProducto" class="form-label">Buscar producto</label>
+            <input class="form-control form-control-lg" type="search" id="buscarProducto" placeholder="Ej. arroz, bebida, jabón" autocomplete="off">
+          </div>
+        </div>
+                
+        <div class="cuadricula-productos" id="listaProductos"> <!-- CATÁLOGO  -->
+            
+          <article class="tarjeta-producto"> <!-- Producto 1 -->
+            <div class="contenedor-imagen-producto">
+              <img class="imagen-producto" src="assets/productos/agua.jpg" alt="Agua de mesa" loading="lazy">
+              <span class="etiqueta-producto">Destacado</span>
+            </div>
+            <div class="cuerpo-producto">
+              <span class="categoria-producto">Bebidas</span>
+              <h3>Agua de mesa 625 ml</h3>
+              <p class="descripcion-producto">Presentación práctica para abastecimiento de bodegas y comercios.</p>
+              <div class="precio-producto mb-2">
+                <span class="fs-5 fw-bold" data-precio="15.00">S/ 15.00</span>
+              </div>
+              <div class="meta-producto">
+                <span class="small fw-semibold">Pack x 15</span>
+                <span class="disponibilidad">Disponible</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="control-cantidad">
+                  <button type="button">−</button>
+                  <input type="number" min="1" max="50" value="1">
+                  <button type="button">+</button>
+                </div>
+                <button type="button" class="btn btn-primary flex-grow-1 agregar-producto">Agregar al pedido</button>
+              </div>
+            </div>
+          </article>
+          
+          <article class="tarjeta-producto"> <!-- Producto 2 -->
+            <div class="contenedor-imagen-producto">
+              <img class="imagen-producto" src="assets/productos/arroz.jpg" alt="Arroz extra" loading="lazy">
+              <span class="etiqueta-producto">Destacado</span>
+            </div>
+            <div class="cuerpo-producto">
+              <span class="categoria-producto">Abarrotes</span>
+              <h3>Arroz extra 5 kg</h3>
+              <p class="descripcion-producto">Producto básico para abastecimiento comercial.</p>
+              <div class="precio-producto mb-2">
+                <span class="fs-5 fw-bold" data-precio="18.50">S/ 18.50</span>
+              </div>
+              <div class="meta-producto">
+                <span class="small fw-semibold">Bolsa x 5 kg</span>
+                <span class="disponibilidad">Disponible</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="control-cantidad">
+                  <button type="button">−</button>
+                  <input type="number" min="1" max="50" value="1">
+                  <button type="button">+</button>
+                </div>
+                <button type="button" class="btn btn-primary flex-grow-1 agregar-producto">Agregar al pedido</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tarjeta-producto"> <!-- Producto 3 -->
+            <div class="contenedor-imagen-producto">
+              <img class="imagen-producto" src="assets/productos/papel-higienico.jpg" alt="Papel higiénico" loading="lazy">
+              <span class="etiqueta-producto">Destacado</span>
+            </div>
+            <div class="cuerpo-producto">
+              <span class="categoria-producto">Higiene</span>
+              <h3>Papel higiénico doble hoja</h3>
+              <p class="descripcion-producto">Papel higiénico en formato familiar/mayorista.</p>
+              <div class="precio-producto mb-2">
+                <span class="fs-5 fw-bold" data-precio="22.00">S/ 22.00</span>
+              </div>
+              <div class="meta-producto">
+                <span class="small fw-semibold">Pack x 24 rollos</span>
+                <span class="disponibilidad">Disponible</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="control-cantidad">
+                  <button type="button">−</button>
+                  <input type="number" min="1" max="50" value="1">
+                  <button type="button">+</button>
+                </div>
+                <button type="button" class="btn btn-primary flex-grow-1 agregar-producto">Agregar al pedido</button>
+              </div>
+            </div>
+          </article>
+          
+          <article class="tarjeta-producto"> <!-- Producto 4 -->
+            <div class="contenedor-imagen-producto">
+              <img class="imagen-producto" src="assets/productos/detergente.jpg" alt="Detergente" loading="lazy">
+              <span class="etiqueta-producto">Destacado</span>
+            </div>
+            <div class="cuerpo-producto">
+              <span class="categoria-producto">Limpieza</span>
+              <h3>Detergente en polvo 900 g</h3>
+              <p class="descripcion-producto">Detergente en polvo para limpieza del hogar.</p>
+              <div class="precio-producto mb-2">
+                <span class="fs-5 fw-bold" data-precio="45.00">S/ 45.00</span>
+              </div>
+              <div class="meta-producto">
+                <span class="small fw-semibold">Fardo x 12</span>
+                <span class="disponibilidad">Disponible</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="control-cantidad">
+                  <button type="button">−</button>
+                  <input type="number" min="1" max="50" value="1">
+                  <button type="button">+</button>
+                </div>
+                <button type="button" class="btn btn-primary flex-grow-1 agregar-producto">Agregar al pedido</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-como-funciona" id="como-funciona" aria-labelledby="como-title">
+      <div class="container">
+        <div class="encabezado-seccion centrado">
+          <span class="antetitulo oscuro">Proceso simple</span>
+          <h2 id="como-title">De la consulta al pedido en 4 pasos</h2>
+        </div>
+        <div class="cuadricula-pasos">
+          <article class="tarjeta-paso"><span class="numero-paso">01</span><h3>Explora</h3><p>Revisa el catálogo y la disponibilidad demostrativa.</p></article>
+          <article class="tarjeta-paso"><span class="numero-paso">02</span><h3>Selecciona</h3><p>Agrega productos y ajusta las cantidades necesarias.</p></article>
+          <article class="tarjeta-paso"><span class="numero-paso">03</span><h3>Envía</h3><p>Completa los datos mínimos y registra la solicitud.</p></article>
+          <article class="tarjeta-paso"><span class="numero-paso">04</span><h3>Consulta</h3><p>Usa el código generado para revisar el estado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-pedido" id="pedido" aria-labelledby="pedido-title">
+      <div class="container">
+        <div class="encabezado-seccion centrado">
+          <span class="antetitulo oscuro">Solicitud mayorista</span>
+          <h2 id="pedido-title">Prepara tu pedido</h2>
+          <p>Selecciona productos del catálogo y completa solo los datos necesarios para gestionar la solicitud.</p>
+        </div>
+        <div class="diseno-pedido">
+          <article class="tarjeta-formulario">
+            <h3>Datos para gestionar la solicitud</h3>
+            <p class="texto-suave">No solicitamos DNI, datos financieros ni contraseñas.</p>
+            <form id="formPedido">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="negocio">Nombre del negocio *</label><input class="form-control" id="negocio" name="negocio" maxlength="80" required></div>
+                <div class="col-md-6"><label class="form-label" for="contactoNombre">Nombre de contacto *</label><input class="form-control" id="contactoNombre" name="contacto" maxlength="80" required></div>
+                <div class="col-md-6"><label class="form-label" for="telefono">Teléfono *</label><input class="form-control" id="telefono" name="telefono" inputmode="numeric" maxlength="9" placeholder="Ej: 987654321" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);"></div>
+                <div class="col-md-6"><label class="form-label" for="zona">Zona o distrito *</label><input class="form-control" id="zona" name="zona" maxlength="80" required></div>
+                <div class="col-12"><label class="form-label" for="observaciones">Observaciones <span class="opcional">(opcional)</span></label><textarea class="form-control" id="observaciones" name="observaciones" rows="3" maxlength="300" placeholder="Referencia o indicación útil para la solicitud"></textarea></div>
+                <div class="col-12"><div class="caja-privacidad"><div class="form-check"><input class="form-check-input" type="checkbox" id="consentimiento" required><label class="form-check-label" for="consentimiento">He leído el aviso de privacidad y autorizo el uso de estos datos exclusivamente para gestionar esta solicitud.</label></div><button class="boton-enlace" type="button" data-bs-toggle="modal" data-bs-target="#modalPrivacidad">Ver aviso de privacidad</button></div></div>
+                <div class="col-12"><button class="btn btn-acento btn-lg w-100" type="button" id="btnEnviarPedido">Enviar pedido</button></div>
+              </div>
+            </form>
+          </article>
+          <article class="tarjeta-resumen-pedido" aria-labelledby="resumen-title">
+            <div class="cabecera-tarjeta-pedido">
+              <h3 id="resumen-title">Mi pedido</h3>
+              <div class="d-flex align-items-center gap-2">
+                <!-- Botón de vaciar que activa el modal de confirmación -->
+                <button type="button" id="btnVaciarPedido" class="btn btn-sm btn-outline-danger d-none" data-bs-toggle="modal" data-bs-target="#modalConfirmarVaciar" aria-label="Vaciar todo el pedido" title="Vaciar pedido"><i class="bi bi-trash3"></i> Vaciar</button>
+                <span class="insignia-suave" id="resumenConteo">0 productos</span>
+              </div> 
+            </div>
+            
+            <div id="pedidoVacio" class="estado-vacio">
+              <span aria-hidden="true"><i class="bi bi-box-seam-fill fs-1 text-warning"></i></span>
+              <strong>Aún no agregaste productos</strong>
+              <p>Explora el catálogo y selecciona lo que necesitas.</p>
+              <a href="#catalogo" class="btn btn-outline-primary">Ir al catálogo</a>
+            </div>
+            
+            <div class="total-pedido flex-column gap-2">
+              <div class="d-flex justify-content-between text-muted fs-6">
+                <span>Total de unidades</span>
+                <strong id="totalUnidades">0</strong>
+              </div>
+              <div class="d-flex justify-content-between text-dark fw-bold fs-5">
+                <span>Total a pagar</span>
+                <strong id="totalMonto">S/ 0.00</strong>
+              </div>
+            </div>
+          </article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-seguimiento" id="seguimiento" aria-labelledby="seguimiento-title">
+      <div class="container contenedor-seguimiento">
+        <div class="texto-seguimiento"><span class="antetitulo">Seguimiento básico</span><h2 id="seguimiento-title">Consulta el estado de tu pedido</h2><p>Ingresa el código recibido después de registrar la solicitud.</p><p class="codigo-ejemplo">Ejemplo: <strong>HO-2026-0001</strong></p></div>
+        <div class="tarjeta-seguimiento">
+          <form id="formSeguimiento" onsubmit="event.preventDefault()">
+            <label for="codigoPedido" class="form-label">Código del pedido</label>
+            <div class="input-group input-group-lg"><input class="form-control" id="codigoPedido" maxlength="20" placeholder="HO-2026-0001" autocomplete="off"><button class="btn btn-acento" type="button">Consultar</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-nosotros" id="nosotros" aria-labelledby="nosotros-title">
+      <div class="container cuadricula-nosotros">
+        <div class="texto-nosotros"><span class="antetitulo oscuro">Sobre H&O</span><h2 id="nosotros-title">Distribución orientada al comercio local</h2><p><strong>Distribuidora y Comercializadora H&O E.I.R.L.</strong> desarrolla actividades de comercialización y distribución mayorista de productos de primera necesidad, abarrotes y bebidas.</p><p>Este prototipo académico propone un canal digital para organizar la consulta de productos y las solicitudes de pedido. No reemplaza los procesos comerciales reales ni constituye una tienda con pago en línea.</p><dl class="datos-empresa"><div><dt>Nombre comercial</dt><dd>Distribuidora y Comercializadora H&O</dd></div><div><dt>RUC</dt><dd>10483761207</dd></div><div><dt>Rubro</dt><dd>Comercialización y distribución mayorista</dd></div></dl></div>
+        <figure class="foto-nosotros"><img src="assets/img/empresa-01.jpg" alt="Mercadería almacenada"></figure>
+      </div>
+      <div class="container cuadricula-galeria" aria-label="Galería de la empresa">
+        <figure><img src="assets/img/empresa-02.jpg" alt="Carga variada"></figure>
+        <figure><img src="assets/img/empresa-03.jpg" alt="Packs almacenados"></figure>
+        <figure><img src="assets/img/empresa-01.jpg" alt="Packs de higiene"></figure>
+      </div>
+    </section>
+
+    <section class="seccion seccion-contacto" id="contacto" aria-labelledby="contacto-title">
+      <div class="container contenedor-contacto">
+        <div><span class="antetitulo oscuro">Contacto</span><h2 id="contacto-title">Datos comerciales </h2></div>
+        <div class="tarjetas-contacto"><article><span class="etiqueta-contacto">Teléfono</span><strong>+51 924 492 684</strong></article><article><span class="etiqueta-contacto">Correo</span><strong>H&Oconsultas@hotmail.com</strong></article><article><span class="etiqueta-contacto">Dirección</span><strong>Jr. Las Rocas s/n, Puylucana, Baños del Inca, Cajamarca</strong></article></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="container cuadricula-pie"><div><img class="logo-marca marca-pie" src="assets/img/logo-ho.png" alt="Logo de Distribuidora y Comercializadora H&O"><p>Pedidos Mayoristas<br><small>Todos los derechos reservados © 2026</small></p></div><div><h2 class="titulo-pie">Navegación</h2><a href="#catalogo">Catálogo</a><a href="#pedido">Pedidos</a><a href="#seguimiento">Seguimiento</a></div><div><h2 class="titulo-pie">Privacidad</h2><button type="button" class="enlace-pie" data-bs-toggle="modal" data-bs-target="#modalPrivacidad">Aviso de privacidad</button></div></div>
+    <div class="container parte-inferior-pie"><span>H&O - Distribuidora y Comercializadora H&O E.I.R.L.</span><span>Todos los derechos reservados © 2026</span></div>
+  </footer>
+
+  <button id="volverArriba" class="volver-arriba" type="button" aria-label="Volver arriba">↑</button>
+
+  <!-- Modal de Aviso de Privacidad -->
+  <div class="modal fade" id="modalPrivacidad" tabindex="-1" aria-labelledby="privacidadTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="privacidadTitle">Política de Privacidad y Protección de Datos</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>En <strong>Distribuidora y Comercializadora H&O E.I.R.L.</strong> nos comprometemos a proteger la privacidad y el uso adecuado de la información proporcionada por nuestros clientes comerciales.</p>
+          
+          <h3 class="fs-6 fw-bold mt-3">1. Finalidad del tratamiento de datos</h3>
+          <p>Los datos recopilados a través de nuestro canal digital son utilizados exclusivamente para la gestión, coordinación y despacho de las solicitudes mayoristas:</p>
+          <ul>
+            <li><strong>Nombre del negocio y de contacto:</strong> Identificar formalmente al establecimiento comercial solicitante.</li>
+            <li><strong>Teléfono:</strong> Establecer una vía directa de coordinación para la entrega y confirmación del pedido.</li>
+            <li><strong>Zona o distrito:</strong> Verificar la cobertura y planificar las rutas de distribución logística.</li>
+            <li><strong>Observaciones:</strong> Considerar referencias o indicaciones útiles proporcionadas para el despacho.</li>
+          </ul>
+
+          <h3 class="fs-6 fw-bold mt-3">2. Confidencialidad y seguridad</h3>
+          <p>La empresa garantiza que no se solicitan números de documento de identidad (DNI), contraseñas, claves de acceso ni información financiera o bancaria de ningún tipo. La información compartida es tratada con estricta confidencialidad.</p>
+
+          <h3 class="fs-6 fw-bold mt-3">3. Marco legal</h3>
+          <p class="mb-0">El tratamiento de los datos personales se realiza en estricto cumplimiento de la Ley N.° 29733 (Ley de Protección de Datos Personales) y su reglamento, resguardando los derechos de los usuarios sobre su información.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación para vaciar el carrito -->
+  <div class="modal fade" id="modalConfirmarVaciar" tabindex="-1" aria-labelledby="vaciarTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="vaciarTitle">Confirmar vaciado</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">¿Estás seguro de que deseas eliminar todos los productos de tu pedido?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="btnConfirmarVaciar">Sí, vaciar pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="btnVerCarrito" class="boton-carrito-flotante" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito" aria-label="Ver carrito"><i class="bi bi-cart4"></i><span class="badge-carrito" id="flotanteConteo">0</span></button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="carritoTitle">
+    <div class="offcanvas-header border-bottom">
+      <h2 class="offcanvas-title fs-4" id="carritoTitle">Mi pedido seleccionado</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    
+    <div class="offcanvas-body bg-light" id="cuerpoModalCarrito">
+    </div>
+    
+    <div class="p-3 border-top bg-white">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted fs-5">Total a pagar:</span> 
+        <strong id="totalMontoModal" class="fs-3 text-dark">S/ 0.00</strong>
+      </div>
+
+      <button type="button" class="btn btn-acento btn-lg w-100 fw-bold" data-bs-dismiss="offcanvas" onclick="document.getElementById('pedido').scrollIntoView({behavior: 'smooth'})">Ir a completar datos</button>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
